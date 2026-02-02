@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Valentine ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating Hearts -->
+<div class="hearts"></div>
+
+<div class="container" id="mainBox">
+  <h1>VaibhavJi, will you be my Valentine? 💖</h1>
+
+  <img src="images/pic1.jpg" class="photo">
+
+  <div class="buttons">
+    <button id="yesBtn">YES ❤️</button>
+    <button id="noBtn">NO 😜</button>
+  </div>
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const mainBox = document.getElementById("mainBox");
+  const music = document.getElementById("bgMusic");
+
+  // NO button runs away
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+
+  // YES click → Love Mail
+  yesBtn.addEventListener("click", () => {
+    music.play();
+
+    mainBox.innerHTML = `
+      <div class="email">
+        <h2>💌 Love Mail</h2>
+        <p><strong>To:</strong> VaibhavJi</p>
+        <p><strong>Subject:</strong> My Valentine 💖</p>
+        <hr>
+        <p>
+          Yayyy! 💕 <br><br>
+          You just made me the happiest person ever 😍  
+          Thank you for being my Valentine ❤️ #RoshavForeverAndEver
+        </p>
+        <img src="images/pic2.jpg" class="photo">
+        <button class="nextBtn" onclick="showProposal()">Next ➡️</button>
+      </div>
+    `;
+  });
+
+  // NEXT slide → Marriage Proposal
+  function showProposal() {
+    mainBox.innerHTML = `
+      <h1>💍 Will you marry my Dear Aahoo Baluu Baby? 💖</h1>
+      <img src="images/propose.gif" class="photo">
+      <p style="font-size:18px;">Forever starts with us 🥰</p>
+    `;
+  }
+
+  // Floating hearts
+  const heartsContainer = document.querySelector(".hearts");
+  setInterval(() => {
+    const heart = document.createElement("span");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }, 300);
+</script>
+
+</body>
+</html>
